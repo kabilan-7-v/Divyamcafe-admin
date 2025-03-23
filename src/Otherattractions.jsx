@@ -44,15 +44,17 @@ function Otherattractions() {
 
       {/* Modal */}
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center">
-          <div className="bg-white p-6 rounded-lg w-[600px]">
-            <div className="flex justify-between items-center">
+        <div className="fixed inset-0  bg-opacity-20 flex justify-center items-center">
+          <div className="bg-white  rounded-lg w-[600px]">
+            <div className="flex justify-between items-center p-6">
               <h2 className="text-xl font-bold">Add New Place</h2>
               <button onClick={() => setIsModalOpen(false)}>
                 <X size={24} />
               </button>
             </div>
-            
+
+            <div className='bg-neutral-200 h-0.5 w-full'></div>
+            <div className='p-6'>
             <label className="block mt-4">Select Menu Image</label>
             <input type="file" className="border p-2 w-full mt-2" />
             
@@ -73,6 +75,7 @@ function Otherattractions() {
                 Upload
               </button>
             </div>
+          </div>
           </div>
         </div>
       )}
