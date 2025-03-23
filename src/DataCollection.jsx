@@ -33,7 +33,7 @@ function DataCollection() {
             {/* Main Content */}
             <div className="flex-1 ">
                 
-<div className="mb-4 w-1/2 relative mt-8 ml-[20rem] ">
+<div className="mb-4 w-1/2 relative mt-8 ml-[22rem] ">
     <div className="absolute inset-y-0 left-3 flex items-center text-gray-500">
         <Search size={18} />
     </div>
