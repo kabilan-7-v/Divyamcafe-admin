@@ -40,6 +40,7 @@ function Menucardmanagement() {
           },
         }
       );
+      Getmenucard();
       alert("Image uploaded successfully");
       setIsModalOpen(false);
     } catch (error) {
@@ -82,12 +83,12 @@ function Menucardmanagement() {
     <Plus color="white" size={34} />
     <h1 className="text-[18px] ml-2">Add New Menu</h1>
   </button>
-  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 lg:grid-cols-2 mt-6">
+  <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 lg:grid-cols-3 mt-6">
     {getmenucard.map((val, index) => (
       <div key={index} className="">
         <img
           src={`data:image/png;base64,${val.imageurl}`}
-          className="w-full h-100 object-cover rounded-md "
+          className="w-150 h-100 object-cover rounded-md "
           alt={`Menu ${index}`}
         />
       </div>

@@ -1,4 +1,4 @@
-import React, { useState ,useEffect} from 'react';
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 import AdminDashboard from './DashboardPage';
 import { Search, Plus, X } from "lucide-react";
@@ -22,12 +22,12 @@ function Otherattractions() {
     try {
       const response = await axios.get('http://localhost:3000/api/getplace');
       console.log(response.data);
-      
+
       // Extract the places array from the response
       if (response.data && response.data.places && Array.isArray(response.data.places)) {
         setPlaces(response.data.places);
-        
-        
+
+
       } else {
         console.error("Unexpected response format:", response.data);
         setPlaces([]);
@@ -74,7 +74,7 @@ function Otherattractions() {
     setLoading(true);
     try {
       const response = await axios.post('http://localhost:3000/api/addplace', {
-        imageurls: imageFiles, 
+        imageurls: imageFiles,
         heading,
         description,
         locationUrl
@@ -95,7 +95,7 @@ function Otherattractions() {
     } finally {
       setLoading(false);
     }
-    
+
   };
 
 
@@ -124,17 +124,17 @@ function Otherattractions() {
             </button>
           </div>
           <div className="flex flex-wrap justify-center">
-          {places.slice().reverse().map((val, index) => (
-  <Attractioncard 
-    key={index} 
-    description={val.description} 
-    images={val.imageurls}  
-    heading={val.heading} 
-  />
-))}
+            {places.slice().reverse().map((val, index) => (
+              <Attractioncard
+                key={index}
+                description={val.description}
+                images={val.imageurls}
+                heading={val.heading}
+              />
+            ))}
 
 
-</div>
+          </div>
 
         </div>
       </div>
@@ -169,24 +169,51 @@ function Otherattractions() {
                   </div>
                 ))}
               </div>
-
               <label className="block mt-4">Heading</label>
-              <input type="text" placeholder="Topic Heading" className="border p-2 w-full mt-2" value={heading} onChange={(e) => setHeading(e.target.value)} />
+              <label className="block mt-4">Heading</label>
+<input 
+  type="text" 
+  placeholder="Topic Heading" 
+  className="border p-2 w-full mt-2" 
+  value={heading} 
+  onChange={(e) => e.target.value.length <= 20 && setHeading(e.target.value)} 
+/>
+<p className="text-sm text-gray-500 mt-1">{heading.length}/20 characters</p>
 
-              <label className="block mt-4">Description</label>
-              <textarea placeholder="Description Content here..." className="border p-2 w-full mt-2" value={description} onChange={(e) => setDescription(e.target.value)} />
+<label className="block mt-4">Description</label>
+<textarea 
+  placeholder="Description Content here..." 
+  className="border p-2 w-full mt-2" 
+  value={description} 
+  onChange={(e) => e.target.value.length <= 120 && setDescription(e.target.value)} 
+/>
+<p className="text-sm text-gray-500 mt-1">{description.length}/120 characters</p>
 
-              <label className="block mt-4">Location Link</label>
-              <input type="text" placeholder="Paste a link" className="border p-2 w-full mt-2" value={locationUrl} onChange={(e) => setLocationUrl(e.target.value)} />
+<label className="block mt-4">Location Link</label>
+<input 
+  type="text" 
+  placeholder="Paste a link" 
+  className="border p-2 w-full mt-2" 
+  value={locationUrl} 
+  onChange={(e) => setLocationUrl(e.target.value)} 
+/>
 
-              <div className="flex justify-between mt-6">
-                <button onClick={() => setIsModalOpen(false)} className="bg-red-500 text-white px-4 py-2 rounded">
-                  Cancel
-                </button>
-                <button onClick={handleSubmit} className="bg-amber-900 text-white px-4 py-2 rounded" disabled={loading}>
-                  {loading ? "Uploading..." : "Upload"}
-                </button>
-              </div>
+<div className="flex justify-between mt-6">
+  <button 
+    onClick={() => setIsModalOpen(false)} 
+    className="bg-red-500 text-white px-4 py-2 rounded"
+  >
+    Cancel
+  </button>
+  <button 
+    onClick={handleSubmit} 
+    className="bg-amber-900 text-white px-4 py-2 rounded" 
+    disabled={loading}
+  >
+    {loading ? "Uploading..." : "Upload"}
+  </button>
+</div>
+
             </div>
           </div>
         </div>
