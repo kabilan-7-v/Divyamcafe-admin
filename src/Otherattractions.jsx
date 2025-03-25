@@ -20,7 +20,7 @@ function Otherattractions() {
   }, []);
   const fetchPlaces = async () => {
     try {
-      const response = await axios.get('http://localhost:3000/api/getplace');
+      const response = await axios.get('https://divyamcafe-backend.onrender.com/api/getplace');
       console.log(response.data);
 
       // Extract the places array from the response
@@ -73,7 +73,7 @@ function Otherattractions() {
 
     setLoading(true);
     try {
-      const response = await axios.post('http://localhost:3000/api/addplace', {
+      const response = await axios.post('https://divyamcafe-backend.onrender.com/api/addplace', {
         imageurls: imageFiles,
         heading,
         description,

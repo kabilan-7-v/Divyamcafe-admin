@@ -32,7 +32,7 @@ function Menucardmanagement() {
     }
     try {
       await axios.post(
-        "http://localhost:3000/api/addmenucard", // Change to your API URL
+        "https://divyamcafe-backend.onrender.com/api/addmenucard", // Change to your API URL
         { imageurl: imageBase64 },
         {
           headers: {
@@ -50,7 +50,7 @@ function Menucardmanagement() {
   };
   const Getmenucard = async () => {
     try {
-      const response = await axios.get("http://localhost:3000/api/getmenucard");
+      const response = await axios.get("https://divyamcafe-backend.onrender.com/api/getmenucard");
       console.log(response.data.data)
       setGetmenucard(response.data.data); // Assuming response structure { status: true, data: [...] }
     } catch (error) {
