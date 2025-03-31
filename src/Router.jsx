@@ -5,12 +5,14 @@ import DataCollection from "./DataCollection";
 import Feedbackmanagement from "./Feedbackmanagement";
 import Menucardmanagement from "./Menucardmanagement";
 import Otherattractions from "./Otherattractions";
+import LoginPage from "./LoginPage";
 
 export default function RouterPage() {
   return (
     <BrowserRouter>
     <Routes>
-        <Route path="/" element={<DataCollection />} />
+      <Route path="/" element={<LoginPage />} />
+        <Route path="/datacollection" element={<DataCollection />} />
         <Route path="/feedbackmanagement" element={<Feedbackmanagement />} />
         <Route path="/menucardmanagement" element={<Menucardmanagement />} />
         <Route path="/otherattractions" element={<Otherattractions />} />

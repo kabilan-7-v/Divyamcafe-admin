@@ -3,21 +3,33 @@ import axios from 'axios';
 import AdminDashboard from './DashboardPage';
 import { Search, Plus, X } from "lucide-react";
 import Attractioncard from './Attractioncard';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+
 
 function Otherattractions() {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [isModalOpenedit, setIsModalOpenedit] = useState(false);
+
   const [heading, setHeading] = useState('');
   const [description, setDescription] = useState('');
   const [locationUrl, setLocationUrl] = useState('');
-  const [imageFiles, setImageFiles] = useState([]); // Base64 images
+  const [imageFiles, setImageFiles] = useState([]); 
   const [imagePreviews, setImagePreviews] = useState([]); // Preview URLs
   const [loading, setLoading] = useState(false);
+  const [id, setid] = useState('');
+
 
   const [places, setPlaces] = useState([]);
+  const navigate = useNavigate(); // Initialize navigation
+
 
   useEffect(() => {
-    fetchPlaces();
-  }, []);
+    const token = localStorage.getItem('username'); // Replace 'authToken' with your actual token key
+    if (!token) {
+      navigate('/'); // Redirect to login if no token is found
+    } else {
+    fetchPlaces();}
+  }, [navigate]);
   const fetchPlaces = async () => {
     try {
       const response = await axios.get('https://divyamcafe-backend.onrender.com/api/getplace');
@@ -65,6 +77,32 @@ function Otherattractions() {
   };
 
   // Handle Form Submission
+  const handleEditSubmit = async () => {
+    if (!heading || !description || !locationUrl || imageFiles.length === 0) {
+      alert("Please fill all fields and select at least one image.");
+      return;
+    }
+    console.log(id)
+  
+    setLoading(true);
+    try {
+      const response = await axios.put(`https://divyamcafe-backend.onrender.com/api/updateplace/${id}`, {
+        imageurls: imageFiles,
+        heading,
+        description,
+        locationUrl
+      });
+  
+      alert(response.data.message);
+      setIsModalOpenedit(false);
+      fetchPlaces();
+    } catch (error) {
+      console.error("Error updating post:", error);
+      alert("Failed to update place.");
+    } finally {
+      setLoading(false);
+    }
+  };
   const handleSubmit = async () => {
     if (!heading || !description || !locationUrl || imageFiles.length === 0) {
       alert("Please fill all fields and select at least one image.");
@@ -103,7 +141,7 @@ function Otherattractions() {
     <div className="flex min-h-screen bg-[#F9F5EE]">
       <AdminDashboard />
       <div className="flex-1">
-        <div className="mb-4 w-1/2 relative mt-8 ml-[20rem]">
+        <div className="mb-4 w-1/2 relative mt-8 ml-4">
           <div className="absolute inset-y-0 left-3 flex items-center text-gray-500">
             <Search size={18} />
           </div>
@@ -114,7 +152,7 @@ function Otherattractions() {
           />
         </div>
 
-        <div className="m-12 ml-84 bg-white rounded-2xl flex flex-col">
+        <div className="mt-6 ml-4 mr-4 bg-white rounded-2xl flex flex-col">
           <div className="flex flex-col items-end">
             <button
               onClick={() => setIsModalOpen(true)}
@@ -125,12 +163,22 @@ function Otherattractions() {
           </div>
           <div className="flex flex-wrap justify-center">
             {places.slice().reverse().map((val, index) => (
-              <Attractioncard
-                key={index}
-                description={val.description}
-                images={val.imageurls}
-                heading={val.heading}
-              />
+             <Attractioncard
+             key={index}
+             description={val.description}
+             images={val.imageurls}
+             heading={val.heading}
+             onEdit={() => {
+               setHeading(val.heading);
+               setDescription(val.description);
+               setLocationUrl(val.locationUrl);
+               setImageFiles(val.imageurls);
+               setImagePreviews(val.imageurls);
+               setIsModalOpenedit(true);
+               setid(val._id)
+             }}
+           />
+           
             ))}
 
 
@@ -218,6 +266,87 @@ function Otherattractions() {
           </div>
         </div>
       )}
+      {isModalOpenedit && (
+        <div className="fixed inset-0 bg-opacity-20 flex justify-center items-center">
+          <div className="bg-white rounded-lg w-[600px]">
+            <div className="flex justify-between items-center p-6">
+              <h2 className="text-xl font-bold">Add New Place</h2>
+              <button onClick={() => setIsModalOpenedit(false)}>
+                <X size={24} />
+              </button>
+            </div>
+
+
+            <div className='bg-neutral-200 h-0.5 w-full'></div>
+            <div className='p-6'>
+              <label className="block mt-4">Select Images</label>
+              <input type="file" multiple accept="image/*" className="border p-2 w-full mt-2" onChange={handleImageChange} />
+
+              {/* Image Previews */}
+              <div className="mt-4 flex flex-wrap gap-4">
+                {imagePreviews.map((preview, index) => (
+                  <div key={index} className="relative">
+                    <img src={preview} alt={`preview-${index}`} className="w-24 h-24 object-cover rounded-lg shadow-md" />
+                    <button
+                      onClick={() => handleRemoveImage(index)}
+                      className="absolute top-0 right-0 bg-red-500 text-white rounded-full p-1"
+                    >
+                      <X size={16} />
+                    </button>
+                  </div>
+                ))}
+              </div>
+              <label className="block mt-4">Heading</label>
+              <label className="block mt-4">Heading</label>
+<input 
+  type="text" 
+  placeholder="Topic Heading" 
+  className="border p-2 w-full mt-2" 
+  value={heading} 
+  onChange={(e) => e.target.value.length <= 20 && setHeading(e.target.value)} 
+/>
+<p className="text-sm text-gray-500 mt-1">{heading.length}/20 characters</p>
+
+<label className="block mt-4">Description</label>
+<textarea 
+  placeholder="Description Content here..." 
+  className="border p-2 w-full mt-2" 
+  value={description} 
+  onChange={(e) => e.target.value.length <= 120 && setDescription(e.target.value)} 
+/>
+<p className="text-sm text-gray-500 mt-1">{description.length}/120 characters</p>
+
+<label className="block mt-4">Location Link</label>
+<input 
+  type="text" 
+  placeholder="Paste a link" 
+  className="border p-2 w-full mt-2" 
+  value={locationUrl} 
+  onChange={(e) => setLocationUrl(e.target.value)} 
+/>
+
+<div className="flex justify-between mt-6">
+  <button 
+    onClick={() => setIsModalOpenedit(false)} 
+    className="bg-red-500 text-white px-4 py-2 rounded"
+  >
+    Cancel
+  </button>
+  <button 
+    onClick={handleEditSubmit} 
+    className="bg-amber-900 text-white px-4 py-2 rounded" 
+    disabled={loading}
+  >
+    {loading ? "Editing..." : "Edit"}
+  </button>
+</div>
+
+            </div>
+          </div>
+        </div>
+      )}
+
+
     </div>
   );
 }
