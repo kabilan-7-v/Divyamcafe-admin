@@ -26,7 +26,7 @@ function LoginPage() {
     setError('');
 
     try {
-      const response = await axios.post('https://divyamcafe-backend.onrender.com/api/loginverify', {
+      const response = await axios.post('https://divyamcafe-backend-39ny.onrender.com/api/loginverify', {
         username,
         password,
       });

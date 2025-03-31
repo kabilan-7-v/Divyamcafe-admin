@@ -44,7 +44,7 @@ function Menucardmanagement() {
 
     try {
       await axios.post(
-        "https://divyamcafe-backend.onrender.com/api/addmenucard",
+        "https://divyamcafe-backend-39ny.onrender.com/api/addmenucard",
         { imageurl: imageBase64 },
         { headers: { "Content-Type": "application/json" } }
       );
@@ -61,7 +61,7 @@ function Menucardmanagement() {
 
   const Getmenucard = async () => {
     try {
-      const response = await axios.get("https://divyamcafe-backend.onrender.com/api/getmenucard");
+      const response = await axios.get("https://divyamcafe-backend-39ny.onrender.com/api/getmenucard");
       setGetmenucard(response.data.data);
     } catch (error) {
       console.error("Error fetching menu cards:", error.response?.data || error);
@@ -72,7 +72,7 @@ function Menucardmanagement() {
     console.log(id)
     if (window.confirm("Are you sure you want to delete this menu card?")) {
       try {
-        await axios.delete(`https://divyamcafe-backend.onrender.com/api/deletemenucard/${id}`);
+        await axios.delete(`https://divyamcafe-backend-39ny.onrender.com/api/deletemenucard/${id}`);
         alert("Menu card deleted successfully");
         Getmenucard();
       } catch (error) {
