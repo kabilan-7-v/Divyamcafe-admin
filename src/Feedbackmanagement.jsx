@@ -1,34 +1,41 @@
-import React, { useEffect } from 'react';
+import React, { useEffect,useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AdminDashboard from './DashboardPage';
 import { Search } from "lucide-react";
 import Feedbackcard from './feedbackcard';
+import axios from "axios";
 
 function FeedbackManagement() {
   const navigate = useNavigate();
+  const [testimonials, setTestimonials] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
 
   useEffect(() => {
+
     const storedUser = localStorage.getItem('username');
     if (!storedUser) {
       navigate('/'); // Redirect to login if not logged in
     }
+    fetchFeedbacks();
+
   }, [navigate]);
 
-  const testimonials = [
-    {
-      quote: "One of the best places to visit and hang out. Good service and lots of spots to take a photo.",
-      author: "Quinta Adelia"
-    },
-    {
-      quote: "Cozy place with many Instagrammable spots, but most importantly, excellent service and tasty food at a reasonable price.",
-      author: "Natasya"
-    },
-    {
-      quote: "This place has a great atmosphere and good food. The owner has a refined taste.",
-      author: "Yosina Ribkah Kalalo"
-    },
-    // Duplicate testimonials removed for clarity
-  ];
+  const fetchFeedbacks = async () => {
+    try {
+      const response = await axios.get("https://divyamcafe-backend-39ny.onrender.com/api/getallfeedback");
+
+      // Filter only entries where isbutton is true
+     
+
+      setTestimonials(response.data.feedbacks);
+      setLoading(false);
+    } catch (err) {
+      setError("Failed to load feedbacks");
+      console.error(err);
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="flex min-h-screen bg-[#F9F5EE]">
@@ -49,11 +56,32 @@ function FeedbackManagement() {
         </div>
 
         {/* Feedback Cards */}
-        <div className="flex flex-wrap justify-center p-8 bg-white rounded-2xl mt-6 ml-4 mr-4">
+        {loading ? (
+               <div className='h-100'> <p className="text-center text-black text-4xl mt-25">Loading...</p></div>
+
+      ) : error ? (
+        <p className="text-center text-red-500 mt-5">{error}</p>
+      ) : testimonials.length === 0 ? (
+       <div className="h-100 flex flex-col justify-center items-center"> <h1 className="text-black text-2xl text-center mt-5">
+          NO FEEDBACK FOUND
+        </h1>
+        </div>
+      ) : (
+        <div className="grid grid-cols-4 gap-4">
           {testimonials.map((item, index) => (
-            <Feedbackcard key={index} index={index} author={item.author} quote={item.quote} />
+            <div key={item._id || index} className="mt-5 flex-basis-[15%]">
+              <Feedbackcard
+                index={index}
+                author={item.name}
+                quote={item.feedback}
+                _id={item._id}
+              />
+            </div>
           ))}
         </div>
+      )}
+
+      <div className="h-35"></div>
       </div>
     </div>
   );
