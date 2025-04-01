@@ -64,9 +64,7 @@ function FeedbackManagement() {
            NO FEEDBACK FOUND
          </h1>
          </div>
-       ) : error ? (
-        <p className="text-center text-red-500 mt-5">{error}</p>
-      )  : (
+       ): (
         <div className="grid grid-cols-4 gap-4">
           {testimonials.map((item, index) => (
             <div key={item._id || index} className="mt-5 flex-basis-[15%]">
