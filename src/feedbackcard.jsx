@@ -24,15 +24,15 @@ function Feedbackcard({ quote, author, index, _id, initialIsButton }) {
   return (
     <div
       key={index}
-      className="bg-white text-[#603913] max-w-sm max-h-[380px] p-4 md:p-6 m-5 rounded-lg shadow-md flex flex-col justify-between"
+      className="bg-white text-[#603913] max-w-sm h-[320px] p-4 md:p-6 m-5 rounded-lg shadow-md flex flex-col justify-between"
     >
-      <span className="text-6xl opacity-10 leading-none">“</span>
+      <span className="text-4xl opacity-10 leading-none">“</span>
       <p className="text-[16px] sm:text-[18px] mb-4 text-center sm:text-left">
         {quote}
       </p>
       <p className="italic font-semibold text-right">— {author}</p>
       <div className="text-right">
-        <span className="text-6xl opacity-10 leading-none">”</span>
+        <span className="text-4xl opacity-10 leading-none">”</span>
       </div>
 
       {/* Toggle Switch */}
@@ -40,7 +40,7 @@ function Feedbackcard({ quote, author, index, _id, initialIsButton }) {
         onClick={handleToggle}
         className={`w-14 h-7 flex items-center rounded-full p-1 cursor-pointer relative ${
           isOn ? "bg-green-500" : "bg-gray-300"
-        } transition duration-300 mt-4 self-center sm:self-start`}
+        } transition duration-300  self-center sm:self-start`}
       >
         <div
           className={`w-6 h-6 bg-white rounded-full shadow-md transform transition ${
