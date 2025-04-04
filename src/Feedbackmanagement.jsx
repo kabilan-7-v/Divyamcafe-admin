@@ -73,6 +73,7 @@ function FeedbackManagement() {
                 author={item.name}
                 quote={item.feedback}
                 _id={item._id}
+                initialIsButton={item.isbutton}
               />
             </div>
           ))}

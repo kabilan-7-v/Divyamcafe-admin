@@ -1,8 +1,9 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import axios from "axios";
 
 function Feedbackcard({ quote, author, index, _id, initialIsButton }) {
   const [isOn, setIsOn] = useState(initialIsButton); // Initialize based on isbutton value
+  
 
   // Toggle isbutton state
   const handleToggle = async () => {

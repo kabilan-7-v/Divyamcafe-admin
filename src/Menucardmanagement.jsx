@@ -11,6 +11,8 @@ function Menucardmanagement() {
   const [imageBase64, setImageBase64] = useState(null);
   const [getmenucard, setGetmenucard] = useState([]);
   const [loading, setLoading] = useState(false);
+  const [isloading, setisLoading] = useState(true);
+
   const [hoverIndex, setHoverIndex] = useState(null); // Track hover state
 
   useEffect(() => {
@@ -66,6 +68,8 @@ function Menucardmanagement() {
     } catch (error) {
       console.error("Error fetching menu cards:", error.response?.data || error);
     }
+  setisLoading(false);
+
   };
 
   const handleDelete = async (id) => {
@@ -107,7 +111,15 @@ function Menucardmanagement() {
             <h1 className="text-[18px] ml-2">Add New Menu</h1>
           </button>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 lg:grid-cols-3 mt-6">
+          {isloading ? (
+               <div className='h-100'> <p className="text-center text-black text-4xl mt-25">Loading...</p></div>
+
+      ) :getmenucard.length === 0 ? (
+        <div className="h-100 flex flex-col justify-center items-center"> <h1 className="text-black text-2xl text-center mt-5">
+           NO MENUCARD FOUND
+         </h1>
+         </div>
+       ):   <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8 lg:grid-cols-3 mt-6">
             {getmenucard.map((val, index) => (
               <div
                 key={index}
@@ -132,7 +144,7 @@ function Menucardmanagement() {
                 )}
               </div>
             ))}
-          </div>
+          </div>}
         </div>
 
         {/* Image Upload Modal */}

@@ -16,6 +16,8 @@ function Otherattractions() {
   const [imageFiles, setImageFiles] = useState([]); 
   const [imagePreviews, setImagePreviews] = useState([]); // Preview URLs
   const [loading, setLoading] = useState(false);
+  const [isloading, setisLoading] = useState(true);
+
   const [id, setid] = useState('');
 
 
@@ -48,6 +50,8 @@ function Otherattractions() {
       console.error("Error fetching places:", error);
       setPlaces([]);
     }
+    setisLoading(false);
+
   };
   // Handle Image Selection
   const handleImageChange = (event) => {
@@ -132,6 +136,7 @@ function Otherattractions() {
       alert("Failed to add place.");
     } finally {
       setLoading(false);
+
     }
 
   };
@@ -161,7 +166,15 @@ function Otherattractions() {
               Add New Place
             </button>
           </div>
-          <div className="flex flex-wrap justify-center">
+          {isloading ? (
+               <div className='h-100'> <p className="text-center text-black text-4xl mt-25">Loading...</p></div>
+
+      ) :places.length === 0 ? (
+        <div className="h-100 flex flex-col justify-center items-center"> <h1 className="text-black text-2xl text-center mt-5">
+           NO OTHER ATTRACTION FOUND
+         </h1>
+         </div>
+       ):   <div className="flex flex-wrap justify-center">
             {places.slice().reverse().map((val, index) => (
              <Attractioncard
              key={index}
@@ -182,7 +195,7 @@ function Otherattractions() {
             ))}
 
 
-          </div>
+          </div>}
 
         </div>
       </div>
