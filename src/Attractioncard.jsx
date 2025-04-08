@@ -6,7 +6,7 @@ function Attractioncard({ heading, images, description, onEdit }) {
   const [isHovered, setIsHovered] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
 
-  const maxChars = 10; // Maximum characters before truncation
+  const maxChars = 30; // Maximum characters before truncation
   const isLongDescription = description.length > maxChars;
 
   useEffect(() => {
@@ -55,7 +55,7 @@ function Attractioncard({ heading, images, description, onEdit }) {
 
       {/* Description */}
       <p className="pl-4 pb-2 pr-4">
-        {isExpanded ? description : `${description.slice(0, maxChars)}...`}
+        {isExpanded ? description : `${description.slice(0, maxChars)} ${description.length> maxChars?"...":""}`}
       </p>
 
       {/* Read More Button */}

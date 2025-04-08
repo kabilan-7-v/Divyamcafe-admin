@@ -28,19 +28,19 @@ export default function AdminDashboard() {
   return (
     <div className="md:w-1/6 bg-[#F1EAD3] p-4    sm:w-1/2 relative">
       {/* Logo */}
-      <img src={logo} alt="Divyam Logo" className="w-40 fixed top-8" />
+      <img src={logo} alt="Divyam Logo" className="w-50 h-50 fixed top-4" />
 
       {/* User Profile Section */}
-      <div className="fixed top-42">
+      {/* <div className="fixed top-42">
       <div className="w-full h-16 bg-white mb-8 rounded-4xl flex text-center justify-center items-center">
         <h1 className="text-[24px] m-3 text-amber-950">Divyam cafe</h1>
         <img src={arrowicon} className="h-[30px] m-3" alt="Arrow Icon" />
       </div>
-      </div>
+      </div> */}
 
       {/* Navigation */}
 
-      <nav className="fixed top-72">
+      <nav className="fixed top-52">
         <ul className="space-y-12">
           <div className="flex items-center">
             <img src={isActive("/") ?datacolor:data} className="w-[30px] h-[30px]" alt="Data Icon" />
