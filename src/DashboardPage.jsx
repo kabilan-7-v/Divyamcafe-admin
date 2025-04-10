@@ -51,10 +51,10 @@ export default function AdminDashboard() {
           </div>
 
           <div className="flex items-center">
-            <img src={isActive("/feedbackmanagement") ?feedbackcolor:feedback} className="w-[30px] h-[30px]" alt="Feedback Icon" />
+            <img src={isActive("/reviewmanagement") ?feedbackcolor:feedback} className="w-[30px] h-[30px]" alt="Feedback Icon" />
             <div className="w-2"></div>
-            <li className={`text-[18px] ${isActive("/feedbackmanagement") ? "text-amber-950 font-bold" : "text-[#979797] font-normal"}`}>
-              <Link to="/feedbackmanagement">Feedback Management</Link>
+            <li className={`text-[18px] ${isActive("/reviewmanagement") ? "text-amber-950 font-bold" : "text-[#979797] font-normal"}`}>
+              <Link to="/reviewmanagement">Review Management</Link>
             </li>
           </div>
 

@@ -31,7 +31,7 @@ function FeedbackManagement() {
       setTestimonials(response.data.feedbacks);
       setLoading(false);
     } catch (err) {
-      setError("Failed to load feedbacks");
+      setError("Failed to load Review");
       console.error(err);
       setLoading(false);
     }
@@ -61,7 +61,7 @@ function FeedbackManagement() {
 
       ) :testimonials.length === 0 ? (
         <div className="h-100 flex flex-col justify-center items-center"> <h1 className="text-black text-2xl text-center mt-5">
-           NO FEEDBACK FOUND
+           NO Review FOUND
          </h1>
          </div>
        ): (

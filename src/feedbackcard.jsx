@@ -87,7 +87,7 @@ function Feedbackcard({
 
       {/* Toggle Switch */}
       <div className="flex flex-row justify-between items-center">
-        <h1 className="font-bold">Visible in feedbackpage</h1>
+        <h1 className="font-bold">Visible in Reviewpage</h1>
         <div
           onClick={handleToggle}
           className={`w-14 h-7 flex items-center rounded-full p-1 cursor-pointer ${

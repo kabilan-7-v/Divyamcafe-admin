@@ -13,7 +13,7 @@ export default function RouterPage() {
     <Routes>
       <Route path="/" element={<LoginPage />} />
         <Route path="/datacollection" element={<DataCollection />} />
-        <Route path="/feedbackmanagement" element={<Feedbackmanagement />} />
+        <Route path="/reviewmanagement" element={<Feedbackmanagement />} />
         <Route path="/menucardmanagement" element={<Menucardmanagement />} />
         <Route path="/otherattractions" element={<Otherattractions />} />
 
