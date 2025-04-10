@@ -83,7 +83,7 @@ function Feedbackcard({
       <div className="text-right">
         <span className="text-4xl opacity-10 leading-none">”</span>
       </div>
-      <h1 className="relative bottom-10 text-2xl">{rating}</h1>
+      <h1 className="relative bottom-4 text-2xl">{rating}</h1>
 
       {/* Toggle Switch */}
       <div className="flex flex-row justify-between items-center">
