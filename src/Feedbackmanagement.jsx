@@ -74,6 +74,8 @@ function FeedbackManagement() {
                 quote={item.feedback}
                 _id={item._id}
                 initialIsButton={item.isbutton}
+                rating={item.rating}
+                initialIshomepage={item.ishomepage}
               />
             </div>
           ))}
