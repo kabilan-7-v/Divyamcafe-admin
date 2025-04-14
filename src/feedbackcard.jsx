@@ -101,6 +101,7 @@ function Feedbackcard({
           ></div>
         </div>
       </div>
+      {isOn===true?
       <div className="flex flex-row justify-between items-center mt-2">
         <h1 className="font-bold">Visible in Homepage</h1>
         <div
@@ -115,7 +116,7 @@ function Feedbackcard({
             }`}
           ></div>
         </div>
-      </div>
+      </div>:<div></div>}
     </div>
   );
 }

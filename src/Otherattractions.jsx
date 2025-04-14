@@ -201,8 +201,13 @@ function Otherattractions() {
       </div>
 
       {isModalOpen && (
-        <div className="fixed inset-0 bg-opacity-20 flex justify-center items-center">
-          <div className="bg-white rounded-lg w-[600px]">
+      
+        <div className="fixed inset-0 flex items-center justify-center z-50">
+          {/* Background overlay */}
+          <div className="absolute inset-0 bg-black opacity-60"></div>
+      
+          {/* Modal card */}
+          <div className="relative bg-white p-6 rounded-lg w-[600px] shadow-lg z-60">
             <div className="flex justify-between items-center p-6">
               <h2 className="text-xl font-bold">Add New Place</h2>
               <button onClick={() => setIsModalOpen(false)}>

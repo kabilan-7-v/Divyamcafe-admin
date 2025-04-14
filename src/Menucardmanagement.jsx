@@ -87,7 +87,7 @@ function Menucardmanagement() {
   };
 
   return (
-    <div className="flex min-h-screen bg-[#F9F5EE]">
+    <div className="flex min-h-screen bg-[#F9F5EE] ">
       <AdminDashboard />
       <div className="flex-1">
         <div className="mb-4 w-1/2 relative mt-8 ml-4">
@@ -149,32 +149,40 @@ function Menucardmanagement() {
 
         {/* Image Upload Modal */}
         {isModalOpen && (
-          <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">
-            <div className="bg-white p-6 rounded-lg w-[400px] shadow-lg">
-              <h2 className="text-lg font-semibold mb-4">Add New Menu</h2>
-              <label className="block mb-2 text-gray-600">Select Menu Image</label>
-              <input
-                type="file"
-                accept="image/*"
-                onChange={handleImageChange}
-                className="w-full border p-2 rounded"
-              />
-              {selectedImage && (
-                <img src={selectedImage} alt="Preview" className="mt-4 w-full rounded-lg" />
-              )}
-              <div className="mt-4 flex justify-between">
-                <button
-                  className="bg-red-500 text-white px-4 py-2 rounded-lg"
-                  onClick={() => setIsModalOpen(false)}
-                >
-                  Cancel
-                </button>
-                <button className="bg-amber-900 text-white px-4 py-2 rounded-lg" onClick={updatedData}>
-                  {loading ? "Uploading..." : "Upload"}
-                </button>
-              </div>
+  <div className="fixed inset-0 flex items-center justify-center z-50">
+    {/* Background overlay */}
+    <div className="absolute inset-0 bg-black opacity-60"></div>
+
+    {/* Modal card */}
+    <div className="relative bg-white p-6 rounded-lg w-[400px] shadow-lg z-60">
+            <h2 className="text-lg font-semibold mb-4">Add New Menu</h2>
+            <label className="block mb-2 text-gray-600">Select Menu Image</label>
+            <input
+              type="file"
+              accept="image/*"
+              onChange={handleImageChange}
+              className="w-full border p-2 rounded"
+            />
+            {selectedImage && (
+              <img src={selectedImage} alt="Preview" className="mt-4 w-full rounded-lg" />
+            )}
+            <div className="mt-4 flex justify-between">
+              <button
+                className="bg-red-500 text-white px-4 py-2 rounded-lg"
+                onClick={() => setIsModalOpen(false)}
+              >
+                Cancel
+              </button>
+              <button
+                className="bg-amber-900 text-white px-4 py-2 rounded-lg"
+                onClick={updatedData}
+              >
+                {loading ? "Uploading..." : "Upload"}
+              </button>
             </div>
           </div>
+        </div>
+        
         )}
       </div>
     </div>
