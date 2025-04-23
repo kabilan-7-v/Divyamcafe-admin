@@ -4,87 +4,16 @@ import AdminDashboard from "./DashboardPage";
 import { Search } from "lucide-react";
 
 const data = [
+  
   {
     name: "Ramkumar",
-    phone: "8976543210",
+    phone: "9003690589",
     address: "No.04 Sivaraman St, P.Chathiram, Karur-36",
     details: "If we want some other datas, we fill this column",
   },
   {
     name: "Afrin",
-    phone: "98752320105",
-    address: "Erode Main Road, K. Parmathi, Karur-14",
-    details: "If we want some other datas, we fill this column",
-  },
-  {
-    name: "Ramkumar",
-    phone: "8976543210",
-    address: "No.04 Sivaraman St, P.Chathiram, Karur-36",
-    details: "If we want some other datas, we fill this column",
-  },
-  {
-    name: "Afrin",
-    phone: "98752320105",
-    address: "Erode Main Road, K. Parmathi, Karur-14",
-    details: "If we want some other datas, we fill this column",
-  },
-  {
-    name: "Ramkumar",
-    phone: "8976543210",
-    address: "No.04 Sivaraman St, P.Chathiram, Karur-36",
-    details: "If we want some other datas, we fill this column",
-  },
-  {
-    name: "Afrin",
-    phone: "98752320105",
-    address: "Erode Main Road, K. Parmathi, Karur-14",
-    details: "If we want some other datas, we fill this column",
-  },
-  {
-    name: "Ramkumar",
-    phone: "8976543210",
-    address: "No.04 Sivaraman St, P.Chathiram, Karur-36",
-    details: "If we want some other datas, we fill this column",
-  },
-  {
-    name: "Afrin",
-    phone: "98752320105",
-    address: "Erode Main Road, K. Parmathi, Karur-14",
-    details: "If we want some other datas, we fill this column",
-  },
-  {
-    name: "Ramkumar",
-    phone: "8976543210",
-    address: "No.04 Sivaraman St, P.Chathiram, Karur-36",
-    details: "If we want some other datas, we fill this column",
-  },
-  {
-    name: "Afrin",
-    phone: "98752320105",
-    address: "Erode Main Road, K. Parmathi, Karur-14",
-    details: "If we want some other datas, we fill this column",
-  },
-  {
-    name: "Ramkumar",
-    phone: "8976543210",
-    address: "No.04 Sivaraman St, P.Chathiram, Karur-36",
-    details: "If we want some other datas, we fill this column",
-  },
-  {
-    name: "Afrin",
-    phone: "98752320105",
-    address: "Erode Main Road, K. Parmathi, Karur-14",
-    details: "If we want some other datas, we fill this column",
-  },
-  {
-    name: "Ramkumar",
-    phone: "8976543210",
-    address: "No.04 Sivaraman St, P.Chathiram, Karur-36",
-    details: "If we want some other datas, we fill this column",
-  },
-  {
-    name: "Afrin",
-    phone: "98752320105",
+    phone: "7010185919",
     address: "Erode Main Road, K. Parmathi, Karur-14",
     details: "If we want some other datas, we fill this column",
   },
